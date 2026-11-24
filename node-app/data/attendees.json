@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Ali Khan",
+    "event": "Tech Conference 2026",
+    "ticketType": "VIP",
+    "ticketPrice": 5000
+  },
+  {
+    "id": 2,
+    "name": "Sara Ahmed",
+    "event": "Web Dev Workshop",
+    "ticketType": "Regular",
+    "ticketPrice": 2000
+  },
+  {
+    "id": 3,
+    "name": "Hamza Malik",
+    "event": "AI Seminar",
+    "ticketType": "Student",
+    "ticketPrice": 1000
+  }
+]
