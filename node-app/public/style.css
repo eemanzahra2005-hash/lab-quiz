@@ -1,0 +1,20 @@
+/* Page background */
+body {
+  background-color: #f4f6fb;
+}
+
+/* Red validation messages */
+.error-msg {
+  color: #dc3545;
+  font-size: 0.875rem;
+  min-height: 1rem;
+}
+
+/* Attendee card hover effect */
+.attendee-card {
+  transition: transform 0.15s ease;
+}
+
+.attendee-card:hover {
+  transform: translateY(-3px);
+}

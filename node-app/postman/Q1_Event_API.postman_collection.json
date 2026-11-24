@@ -1,0 +1,124 @@
+{
+  "info": {
+    "name": "Q1 Event API",
+    "description": "Lab Quiz 01 - Q1 Event Registration Manager | Eeman Zahra | BSCS-V-C",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000" },
+    { "key": "newId", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "GET all attendees",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/attendees"
+      }
+    },
+    {
+      "name": "POST valid attendee",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "pm.collectionVariables.set(\"newId\", pm.response.json().id);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Ayesha Noor\",\n  \"event\": \"Cyber Security Talk\",\n  \"ticketType\": \"Student\",\n  \"ticketPrice\": 800\n}"
+        },
+        "url": "{{baseUrl}}/attendees"
+      }
+    },
+    {
+      "name": "POST empty name (400)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status is 400\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"\",\n  \"event\": \"Cyber Security Talk\",\n  \"ticketType\": \"Regular\",\n  \"ticketPrice\": 1500\n}"
+        },
+        "url": "{{baseUrl}}/attendees"
+      }
+    },
+    {
+      "name": "DELETE attendee",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/attendees/{{newId}}"
+      }
+    },
+    {
+      "name": "DELETE unknown id (404)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status is 404\", function () {",
+              "    pm.response.to.have.status(404);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/attendees/9999"
+      }
+    }
+  ]
+}
